@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Gumroad Keyword Researcher</title>
+  <style>
+    body { font: 14px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; width: 420px; margin: 0; }
+    header { padding: 12px 14px; border-bottom: 1px solid #eee; font-weight: 600; }
+    main { padding: 12px 14px; }
+    .row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+    button { padding:8px 10px; border:1px solid #ddd; background:#fff; border-radius:8px; cursor:pointer; }
+    button:disabled { opacity:.6; cursor:not-allowed; }
+    label { display:flex; align-items:center; gap:8px; }
+    .muted { color:#666; }
+    .progress { margin: 8px 0 12px; height:6px; background:#f2f2f2; border-radius:999px; overflow:hidden; }
+    .bar { height:100%; width:0%; background:#222; transition:width .2s ease; }
+    details { margin:10px 0; }
+    .table { border:1px solid #eee; border-radius:10px; overflow:hidden; margin-top:10px; }
+    table { width:100%; border-collapse:collapse; }
+    th, td { padding:8px; border-bottom:1px solid #f3f3f3; text-align:left; }
+    th { background:#fafafa; font-weight:600; }
+    textarea { width:100%; min-height:68px; border:1px solid #ddd; border-radius:10px; padding:8px; resize:vertical; }
+    .pill { display:inline-block; padding:2px 8px; border:1px solid #eee; border-radius:999px; margin:2px; background:#fafafa; }
+    .nowrap { white-space:nowrap; }
+    .tabs { display:flex; gap:6px; margin:10px 0; }
+    .tab { padding:6px 10px; border:1px solid #ddd; border-radius:8px; cursor:pointer; }
+    .tab.active { background:#111; color:#fff; border-color:#111; }
+  </style>
+</head>
+<body>
+  <header>Gumroad Keyword Researcher</header>
+  <main>
+    <div class="row">
+      <button id="scan">Scan Current Page</button>
+      <button id="export" disabled>Export CSV</button>
+      <button id="clear">Clear</button>
+    </div>
+
+    <div class="row">
+      <label><input type="checkbox" id="ngramsToggle"> Enable N-grams (2–3 word phrases)</label>
+    </div>
+
+    <details open>
+      <summary><strong>Blacklist (ignore words/phrases)</strong></summary>
+      <div class="muted" style="margin:6px 0 8px;">Pisahkan dengan koma atau baris baru. Contoh: <em>notion, template, digital planner</em></div>
+      <textarea id="blacklist"></textarea>
+      <div class="row" style="margin-top:8px;">
+        <button id="saveSettings">Save Settings</button>
+      </div>
+    </details>
+
+    <div class="muted">Open a Gumroad search, collection, or product page, then click “Scan”.</div>
+
+    <div class="progress" hidden><div class="bar"></div></div>
+
+    <div id="summary"></div>
+
+    <details id="productsWrap" hidden>
+      <summary><strong>Products Scanned</strong></summary>
+      <div id="products"></div>
+    </details>
+
+    <div class="tabs" id="tabs" hidden>
+      <div class="tab active" data-tab="uni">Unigrams</div>
+      <div class="tab" data-tab="bi">Bigrams</div>
+      <div class="tab" data-tab="tri">Trigrams</div>
+    </div>
+
+    <div class="table" id="keywordsWrap" hidden>
+      <table id="keywordsTbl">
+        <thead>
+          <tr>
+            <th>Term</th>
+            <th class="nowrap">Count</th>
+            <th class="nowrap">In Tags</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </main>
+  <footer style="padding:8px 14px; border-top:1px solid #eee; color:#666; font-size:12px;">
+    Tip: Use the floating badge on Gumroad pages to quick-scan.
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

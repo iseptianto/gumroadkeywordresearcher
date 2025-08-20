@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Gumroad Keyword Researcher",
+  "version": "1.1.0",
+  "description": "Find frequently used keywords, tags, and n-grams on Gumroad search/product pages.",
+  "action": { "default_popup": "popup.html" },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": [
+    "https://gumroad.com/*",
+    "https://*.gumroad.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://gumroad.com/*", "https://*.gumroad.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
