@@ -23,7 +23,7 @@ This extension helps digital creators, sellers, and researchers **discover popul
 1. Clone this repo or download as ZIP:
 
    ```bash
-   git clone https://https://github.com/iseptianto/gumroadkeywordresearcher.git
+   git clone https://github.com/iseptianto/gumroadkeywordresearcher.git
    ```
 
    then open the folder.
